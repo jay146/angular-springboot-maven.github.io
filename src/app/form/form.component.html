@@ -1,0 +1,90 @@
+<div class="container jumbotron col-sm-8">
+  <table class="table table-striped bg-muted text-danger">
+    <thead>
+      <th>ID</th>
+      <th>FIRSTNAME</th>
+      <th>LASTNAME</th>
+      <th>Email</th>
+      <th>Mobile_number</th>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let user of userdata!">
+
+
+        <td class="col-sm-2 text-primary"> {{user.id}}</td>
+        <td class="col-sm-2 text-primary"> {{user.firstname}}</td>
+        <td class="col-sm-2 text-primary"> {{user.lastname}}</td>
+        <td class="col-sm-2 text-primary"> {{user.email}}</td>
+        <td class="col-sm-1 text-primary"> {{user.phonenumber}}</td>
+        <td class="col-sm-1 text-primary">
+          <button type="button" class="btn btn" data-toggle="modal" data-target="#myModal"(click)=editdata(user)>
+
+            <i class="fas fa-edit"></i>Update</button>
+        </td>
+
+        <td class="col-sm-1">
+          <button type="button " (click)=deleteuser(user.id) class="btn">
+            <i class="fas fa-trash"></i>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update employee details</h4>
+      </div>
+      <div class="modal-body">
+        <form #register=ngForm (ngSubmit)=updatedata(register.value)>
+
+          <h2 class="text-center"> Employee-data</h2>
+
+          <div class="form-group">
+
+            <i class="fas fa-user"></i>
+            &nbsp;
+            <input type="text" name="firstname" [(ngModel)]=datatoedit.firstname #s_name=ngModel id="fname"
+              placeholder="Enter  your first name"><br>
+          </div>
+
+          <div class="form-group">
+            <i class="fas fa-phone-square-alt"></i>
+            &nbsp;
+            <input type="number" name="phonenumber" [(ngModel)]=datatoedit.phonenumber #p_no=ngModel id="pno"
+              placeholder="Enter phone number"><br>
+          </div>
+
+          <div class="form-group">
+            <i class="fas fa-user"></i>&nbsp;
+            <input type="text" placeholder="Enter your last name" #l_name=ngModel [(ngModel)]=datatoedit.lastname id="last_name"
+              name="lastname"><br />
+          </div>
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>&nbsp;
+            <input type="text" placeholder="Enter your email" #mail=ngModel [(ngModel)]=datatoedit.email id="email" name="email"
+              required email><br />
+          </div>
+
+
+          <button class="btn btn-success">Submit &nbsp; <i class="fas fa-paper-plane"></i> </button>
+        </form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</div>
